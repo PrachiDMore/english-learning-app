@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../components/Button';
+import { Link } from 'react-router-dom';
 
 const Main = () => {
   return (
@@ -10,9 +11,9 @@ const Main = () => {
             <h1 className='text-3xl font-bold text-textBlue'>Hi John,</h1>
             <p className='text-lg text-textGray'>Keep your way to learn</p>
           </div>
-          <div>
+          <Link to={"/profile"}>
             <img className='w-14 h-14 rounded-full object-cover' src="https://img.freepik.com/free-photo/cheerful-indian-businessman-smiling-closeup-portrait-jobs-career-campaign_53876-129417.jpg?t=st=1708616418~exp=1708620018~hmac=3b75c8218eacf33885cf4a1a37736fa8857b02bd0684d953fb3f410559cb711a&w=900" alt="" />
-          </div>
+          </Link>
         </div>
 
         <div className='bg-textBlue relative flex flex-col items-end rounded-2xl p-5 mt-8'>
