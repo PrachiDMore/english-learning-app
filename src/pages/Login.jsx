@@ -25,7 +25,7 @@ const Login = () => {
         </div>
       </div>
 
-      <div className='w-full'>
+      <div className='w-full '>
         <Button to={"/main"} text={"Login"}/>
       </div>
 

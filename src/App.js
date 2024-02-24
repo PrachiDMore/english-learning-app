@@ -8,6 +8,12 @@ import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
 import Main from './pages/Main';
 import Profile from './pages/Profile';
+import SelectStory from './pages/SelectStory';
+import Story from './pages/Story';
+import SelectCharacter from './pages/SelectCharacter';
+import Chat from './pages/Chat';
+import UploadStory from './pages/UploadStory';
+import YourStory from './pages/YourStory';
 
 function App() {
   return (
@@ -22,6 +28,12 @@ function App() {
           <Route path="/createAccount" element={<CreateAccount />} />
           <Route path="/main" element={<Main />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/selectStory" element={<SelectStory />} />
+          <Route path="/story" element={<Story />} />
+          <Route path="/selectCharacter" element={<SelectCharacter />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/uploadStory" element={<UploadStory />} />
+          <Route path="/yourStory" element={<YourStory />} />
         </Routes>
       </Router>
     </>
