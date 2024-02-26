@@ -6,7 +6,7 @@ import { IoArrowForwardCircleOutline } from "react-icons/io5";
 const Screen3 = () => {
   return (
     <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-7 justify-start items-center px-7 py-10'>
-      <div className='w-full'><Link className='w-full flex justify-end text-textGray text-lg'>Skip</Link></div>
+      <div className='w-full'><Link to={'/login'} className='w-full flex justify-end text-textGray text-lg'>Skip</Link></div>
 
       <div className='h-full flex flex-col justify-between'>
         <div></div>

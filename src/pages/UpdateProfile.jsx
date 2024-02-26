@@ -2,17 +2,19 @@ import React from 'react'
 import { IoArrowBackCircle } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
-import { TbLogout2 } from "react-icons/tb";
+import { FaRegUser } from "react-icons/fa";
+import { MdMailOutline } from "react-icons/md";
+import Input from '../components/Input';
 
-const Profile = () => {
+const UpdateProfile = () => {
   return (
     <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-20 items-center px-5 py-5'>
       <div className='w-full h-32 bg-textBlue rounded-2xl p-5 relative'>
         <div className='flex justify-between items-center'>
-          <Link to={'/main'} className=' flex justify-center items-center'>
+          <Link to={'/profile'} className=' flex justify-center items-center'>
             <IoArrowBackCircle className='text-lightWhite text-4xl' />
           </Link>
-          <h1 className='w-full h-max text-center text-2xl font-bold text-lightWhite'>Profile</h1>
+          <h1 className='w-full h-max text-center text-2xl font-bold text-lightWhite'>Update Profile</h1>
           <IoArrowBackCircle className='text-textBlue text-4xl' />
         </div>
 
@@ -22,18 +24,17 @@ const Profile = () => {
       </div>
 
       <div className='w-full flex flex-col gap-8'>
-        <div className='flex gap-4 flex-col items-center'>
-          <div className='flex flex-col items-center'>
-            <h1 className='font-medium text-xl'>Jhon Doe</h1>
-            <p className='text-textGray'>jhondoe@gmail.com</p>
-          </div>
-          <div className='w-max flex justify-center'>
-            <Button to={'/updateProfile'} className={' text-sm px-4 p-3'} text={'Update Profile'} />
-          </div>
+        <div className='flex flex-col items-center'>
+          <h1 className='font-medium text-xl'>Jhon Doe</h1>
+          <p className='text-textGray'>jhondoe@gmail.com</p>
         </div>
-        <div className='p-4 bg-lightWhite w-full rounded-2xl flex items-center gap-3 boxShadow'>
-          <TbLogout2 className='text-xl' />
-          <p className='text-lg'>Logout</p>
+        <div className='w-full flex flex-col gap-8'>
+          <div className='w-full flex flex-col gap-5'>
+            <Input icon={<FaRegUser className='text-textGray ' />} type={'text'} placeholder={'Name'} />
+            <Input icon={<MdMailOutline className='text-textGray ' />} type={'text'} placeholder={'Email'} />
+            <Input icon={<FaRegUser className='text-textGray ' />} type={'text'} placeholder={'Username'} />
+          </div>
+          <Button text={'Update'}/>
         </div>
       </div>
 
@@ -41,4 +42,4 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default UpdateProfile

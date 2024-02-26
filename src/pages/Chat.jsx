@@ -8,11 +8,11 @@ const Chat = () => {
     <div>
       <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-5 items-center p-7 '>
         <div className='w-full flex justify-between items-center'>
-          <Link to={'/selectCharacter'} className='w-7 h-7 flex justify-center items-center'>
-            <IoArrowBackCircle className='text-textBlue text-2xl' />
+          <Link to={'/selectCharacter'} className=' flex justify-center items-center'>
+            <IoArrowBackCircle className='text-textBlue text-4xl' />
           </Link>
           <h1 className='w-full h-max text-center text-2xl font-bold text-textBlue'>Chat with Luna</h1>
-          <IoArrowBackCircle className='text-lightWhite text-3xl' />
+          <IoArrowBackCircle className='text-lightWhite text-4xl' />
         </div>
 
         <div className='w-full h-screen flex flex-col justify-between'>

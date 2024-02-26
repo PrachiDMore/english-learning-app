@@ -1,20 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { IoArrowBackCircle } from "react-icons/io5";
+import { SiGooglemessages } from "react-icons/si";
 
 const YourStory = () => {
   return (
     <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-5 items-center p-7 '>
       <div className='w-full flex justify-between items-center'>
-        <Link to={'/uploadStory'} className='w-7 h-7 flex justify-center items-center'>
-          <IoArrowBackCircle className='text-textBlue text-2xl' />
+        <Link to={'/uploadStory'} className=' flex justify-center items-center'>
+          <IoArrowBackCircle className='text-textBlue text-4xl' />
         </Link>
         <h1 className='w-full h-max text-center text-2xl font-bold text-textBlue'>Your Story</h1>
-        <IoArrowBackCircle className='text-lightWhite text-3xl' />
+        <IoArrowBackCircle className='text-lightWhite text-4xl' />
       </div>
 
       <div className='pb-7'>
-        <p>
+        <p className='text-justify text-lg'>
           In the midst of a dense forest, shrouded in the perpetual twilight of its towering trees, there existed a small, forgotten pond. This pond, known only to the denizens of the forest, was home to two unlikely friends:Luna, a luminous firefly, and Throne, a solitary old turtle.
          Luna, with her incandescent glow, was the embodiment of light and gaiety. Each night, she danced above the pond's mirror-like surface, casting reflections that shimmered like stars fallen to earth. Throne, on the other hand, was the epitome of patience and wisdom. With a shell weathered by time, he moved through life at a deliberate pace, a silent observer of the world's wonders and woes.
           Their friendship was an oddity, born out of a chance meeting when Luna, fascinated by the reflection of the moon on the water's surface, had dived too close and found herself trapped in the water's embrace. Throne, hearing the commotion, had slowly made his way to her and, with a gentle nudge of his nose, had brought her back to the safety of the air. Since that night,Luna had been steadfast in her gratitude, and Throne had found companionship in her light, a solace he hadn't realized he'd yearned for.
@@ -24,6 +25,10 @@ const YourStory = () => {
           And so, beneath the canopy of an eternal forest, their bond deepened, a testament to the unlikely friendships that flourish in the heart of nature.Luna and Throne, a firefly and a turtle, together they remained, two solitary lights against the backdrop of an ever-changing world, their stories a bridge spanning the gap between the earth and the stars.
         </p>
       </div>
+
+      <Link to={'/selectCharacter'} className='fixed z-50 bottom-7 right-7'>
+        <SiGooglemessages className='text-5xl rounded-full text-textBlue bg-white  iconShadow' />
+      </Link>
     </div>
   )
 }
