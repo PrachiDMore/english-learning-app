@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Input from '../components/Input'
 import Button from '../components/Button'
 import { Link } from 'react-router-dom'
 import { FaRegUser } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { MdMailOutline } from "react-icons/md";
+import { LuEyeOff, LuEye } from "react-icons/lu";
 
 const CreateAccount = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [name, setName] = useState('')
+  const [viewPassword, setViewPassword] = useState(false)
+  console.log(viewPassword);
   return (
     <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-7 justify-start items-center px-7 py-10'>
       <div>
@@ -19,14 +26,34 @@ const CreateAccount = () => {
       </div>
 
       <div className='w-full grid gap-5'>
-        <Input icon={<MdMailOutline className='text-textGray ' />} type={"email"} placeholder={"Email"} />
-        <Input icon={<FaRegUser className='text-textGray ' />} type={"text"} placeholder={"Username"} />
-        <Input icon={<MdLockOutline className='text-textGray  text-lg' />} type={"text"} placeholder={"Password"} />
-        <Input icon={<MdLockOutline className='text-textGray  text-lg' />} type={"text"} placeholder={"Confirm password"} />
+        <Input icon={<MdMailOutline className='text-textGray ' />} type={"email"} placeholder={"Email"} value={email} onChange={(e) => {
+          setEmail(e.target.value)
+        }} />
+        <Input icon={<FaRegUser className='text-textGray ' />} type={"text"} placeholder={"Name"} value={name} onChange={(e) => {
+          setName(e.target.value)
+        }} />
+        <Input icon={<MdLockOutline className='text-textGray  text-lg' />} type={viewPassword ? "text" : "password"} placeholder={"Password"} value={password} onChange={(e) => {
+          setPassword(e.target.value)
+        }} />
+        <button className='flex items-center gap-x-3 ' onClick={() => {
+          setViewPassword(!viewPassword)
+        }}>
+          <p>
+          {
+            viewPassword ? <LuEye /> : <LuEyeOff />
+          }
+          </p>
+          <p className='text-textBlue'>
+            Show Password
+          </p>
+        </button>
+        <Input icon={<MdLockOutline className='text-textGray  text-lg' />} type={"text"} placeholder={"Confirm password"} value={confirmPassword} onChange={(e) => {
+          setConfirmPassword(e.target.value)
+        }} />
       </div>
 
       <div className='w-full'>
-        <Button to={'/main'} text={"Create Account"}/>
+        <Button to={'/main'} text={"Create Account"} />
       </div>
 
       <div className='w-full'>
