@@ -35,7 +35,7 @@ const CreateAccount = () => {
         <Input icon={<MdLockOutline className='text-textGray  text-lg' />} type={viewPassword ? "text" : "password"} placeholder={"Password"} value={password} onChange={(e) => {
           setPassword(e.target.value)
         }} />
-        <button className='flex items-center gap-x-3 ' onClick={() => {
+        {/* <button className='flex items-center gap-x-3 ' onClick={() => {
           setViewPassword(!viewPassword)
         }}>
           <p>
@@ -46,7 +46,7 @@ const CreateAccount = () => {
           <p className='text-textBlue'>
             Show Password
           </p>
-        </button>
+        </button> */}
         <Input icon={<MdLockOutline className='text-textGray  text-lg' />} type={"text"} placeholder={"Confirm password"} value={confirmPassword} onChange={(e) => {
           setConfirmPassword(e.target.value)
         }} />
