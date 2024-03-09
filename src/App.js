@@ -15,11 +15,14 @@ import Chat from './pages/Chat';
 import UploadStory from './pages/UploadStory';
 import YourStory from './pages/YourStory';
 import UpdateProfile from './pages/UpdateProfile';
+import { ContextProvider } from './context/Context';
 
 function App() {
   return (
     <>
       <Router>
+        <ContextProvider>
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/screen1" element={<Screen1 />} />
@@ -37,6 +40,7 @@ function App() {
           <Route path="/uploadStory" element={<UploadStory />} />
           <Route path="/yourStory" element={<YourStory />} />
         </Routes>
+        </ContextProvider>
       </Router>
     </>
   );

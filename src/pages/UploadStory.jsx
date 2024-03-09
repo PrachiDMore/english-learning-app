@@ -27,6 +27,7 @@ const UploadStory = () => {
         <h1 className='text-lg font-medium'>Upload your story or text </h1>
         <div className='flex gap-3'>
           <Button text={'Upload'} to={'/yourStory'} />
+          {/* <a href="https://testllml.streamlit.app/">Upload</a> */}
         </div>
       </div>
     </div>

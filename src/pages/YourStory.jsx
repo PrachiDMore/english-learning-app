@@ -5,16 +5,16 @@ import { SiGooglemessages } from "react-icons/si";
 
 const YourStory = () => {
   return (
-    <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-5 items-center p-7 '>
-      <div className='w-full flex justify-between items-center'>
+    <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-5 items-center  '>
+      {/* <div className='w-full flex justify-between items-center'>
         <Link to={'/uploadStory'} className=' flex justify-center items-center'>
           <IoArrowBackCircle className='text-textBlue text-4xl' />
         </Link>
         <h1 className='w-full h-max text-center text-2xl font-bold text-textBlue'>Your Story</h1>
         <IoArrowBackCircle className='text-lightWhite text-4xl' />
-      </div>
+      </div> */}
 
-      <div className='pb-7'>
+      {/* <div className='pb-7'>
         <p className='text-justify text-lg'>
           In the midst of a dense forest, shrouded in the perpetual twilight of its towering trees, there existed a small, forgotten pond. This pond, known only to the denizens of the forest, was home to two unlikely friends:Luna, a luminous firefly, and Throne, a solitary old turtle.
          Luna, with her incandescent glow, was the embodiment of light and gaiety. Each night, she danced above the pond's mirror-like surface, casting reflections that shimmered like stars fallen to earth. Throne, on the other hand, was the epitome of patience and wisdom. With a shell weathered by time, he moved through life at a deliberate pace, a silent observer of the world's wonders and woes.
@@ -24,7 +24,19 @@ const YourStory = () => {
           ButLuna, with a wisdom that belied her seeming frivolity, would always reassure him. "Throne," she'd say, her light pulsing softly in the darkness, "as long as this pond is here, and its waters reflect the sky, I will always return. For what is the joy of the sun, if I cannot share its stories with you?"
           And so, beneath the canopy of an eternal forest, their bond deepened, a testament to the unlikely friendships that flourish in the heart of nature.Luna and Throne, a firefly and a turtle, together they remained, two solitary lights against the backdrop of an ever-changing world, their stories a bridge spanning the gap between the earth and the stars.
         </p>
-      </div>
+      </div> */}
+
+      <Link to={'/uploadStory'} className='fixed left-2 pt-1.5' >
+        <IoArrowBackCircle className='text-black text-4xl' />
+      </Link>
+
+      <iframe
+        title="Streamlit App"
+        src=" http://192.168.0.104:8501" // Replace with your Streamlit app's URL
+        width="100%"
+        height="100%"
+
+      />
 
       <Link to={'/selectCharacter'} className='fixed z-50 bottom-7 right-7'>
         <SiGooglemessages className='text-5xl rounded-full text-textBlue bg-white  iconShadow' />
