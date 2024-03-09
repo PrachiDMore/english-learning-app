@@ -1,10 +1,20 @@
 import React from 'react'
 import { IoArrowBackCircle } from "react-icons/io5";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import { TbLogout2 } from "react-icons/tb";
+import { ContextAuth } from '../context/Context';
+import { toast } from 'sonner';
 
 const Profile = () => {
+  const { account } = ContextAuth()
+
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    localStorage.clear()
+    toast.success("Logged Out Sucessfully")
+    navigate('/login')
+  }
   return (
     <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-20 items-center px-5 py-5'>
       <div className='w-full h-32 bg-textBlue rounded-2xl p-5 relative'>
@@ -24,8 +34,8 @@ const Profile = () => {
       <div className='w-full flex flex-col gap-8'>
         <div className='flex gap-4 flex-col items-center'>
           <div className='flex flex-col items-center'>
-            <h1 className='font-medium text-xl'>Jhon Doe</h1>
-            <p className='text-textGray'>jhondoe@gmail.com</p>
+            <h1 className='font-medium text-xl'>{account?.name}</h1>
+            <p className='text-textGray'>{account?.email}</p>
           </div>
           <div className='w-max flex justify-center'>
             <Button to={'/updateProfile'} className={' text-sm px-4 p-3'} text={'Update Profile'} />
@@ -33,7 +43,7 @@ const Profile = () => {
         </div>
         <div className='p-4 bg-lightWhite w-full rounded-2xl flex items-center gap-3 boxShadow'>
           <TbLogout2 className='text-xl' />
-          <p className='text-lg'>Logout</p>
+          <button onClick={handleLogout} className='text-lg'>Logout</button>
         </div>
       </div>
 

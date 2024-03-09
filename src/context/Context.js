@@ -3,6 +3,8 @@ import { createContext } from "react";
 import extractToken from "../utils/GetToken";
 import { jwtDecode } from "jwt-decode";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { server } from "..";
 
 export const Datacontext = createContext(null)
 
@@ -12,10 +14,30 @@ const ContextProvider = ({ children }) => {
 	const location = useLocation()
 	const [account, setAccount] = useState('')
 	const [userId, setUserId] = useState('')
+
+	const fetchUser = async (userId) => {
+		try {
+			await axios(`${server}/user/${userId}`, {
+				method: "GET",
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("token")}`
+				}
+			}).then((response) => {
+				setAccount(response.data?.user)
+			})
+				.catch((err) => {
+					console.log(err);
+				})
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	useEffect(() => {
 		if (extractToken()) {
 			const jwtD = jwtDecode(localStorage.getItem("token"))
 			setUserId(jwtD?.id)
+			fetchUser(jwtD?.id)
 			// console.log(location.pathname);
 			if (location.pathname === "/login" || location.pathname === "/screen1" || location.pathname === "/screen2" || location.pathname === "/screen3") {
 				navigate("/main")
@@ -24,17 +46,19 @@ const ContextProvider = ({ children }) => {
 		else {
 			navigate('/screen1')
 		}
-	}, [])
-
-	useEffect(() => {
-		
-
-		
 	}, [userId])
 
 
+
+	// useEffect(() => {
+
+
+
+	// }, [userId])
+
+
 	return (
-		<Datacontext.Provider value={{}}>
+		<Datacontext.Provider value={{account}}>
 			{children}
 		</Datacontext.Provider>
 	)

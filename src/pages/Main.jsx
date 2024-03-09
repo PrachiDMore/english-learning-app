@@ -1,14 +1,17 @@
 import React from 'react'
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
+import { ContextAuth } from '../context/Context';
 
 const Main = () => {
+  const {account} = ContextAuth()
+  console.log(account);
   return (
     <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-7 justify-between items-center px-5 pt-5 pb-9'>
       <div className='w-full grid gap-5'>
         <div className='w-full flex justify-between items-center'>
           <div>
-            <h1 className='text-3xl font-bold text-textBlue'>Hi John,</h1>
+            <h1 className='text-3xl font-bold text-textBlue'>Hi {account?.name},</h1>
             <p className='text-lg text-textGray'>Keep your way to learn</p>
           </div>
           <Link to={"/profile"}>
