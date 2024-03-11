@@ -15,6 +15,23 @@ const ContextProvider = ({ children }) => {
 	const [account, setAccount] = useState('')
 	const [userId, setUserId] = useState('')
 
+
+
+	useEffect(() => {
+		if (extractToken()) {
+			const jwtD = jwtDecode(localStorage.getItem("token"))
+			setUserId(jwtD?.id)
+			// console.log(location.pathname);
+			if (location.pathname === "/login" || location.pathname === "/screen1" || location.pathname === "/screen2" || location.pathname === "/screen3") {
+				navigate("/main")
+			}
+		}
+		else {
+			navigate('/screen1')
+		}
+	}, [])
+
+
 	const fetchUser = async (userId) => {
 		try {
 			await axios(`${server}/user/${userId}`, {
@@ -32,33 +49,13 @@ const ContextProvider = ({ children }) => {
 			console.log(error);
 		}
 	}
-
 	useEffect(() => {
-		if (extractToken()) {
-			const jwtD = jwtDecode(localStorage.getItem("token"))
-			setUserId(jwtD?.id)
-			fetchUser(jwtD?.id)
-			// console.log(location.pathname);
-			if (location.pathname === "/login" || location.pathname === "/screen1" || location.pathname === "/screen2" || location.pathname === "/screen3") {
-				navigate("/main")
-			}
-		}
-		else {
-			navigate('/screen1')
-		}
+		fetchUser(userId)
 	}, [userId])
 
 
-
-	// useEffect(() => {
-
-
-
-	// }, [userId])
-
-
 	return (
-		<Datacontext.Provider value={{account}}>
+		<Datacontext.Provider value={{ account }}>
 			{children}
 		</Datacontext.Provider>
 	)

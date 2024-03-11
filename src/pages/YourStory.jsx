@@ -32,7 +32,7 @@ const YourStory = () => {
 
       <iframe
         title="Streamlit App"
-        src=" http://192.168.0.104:8501" // Replace with your Streamlit app's URL
+        src=" https://mangrove-atlas.herokuapp.com/country/IND?bounds=[[31.63330804491315,3.4656812989302352],[115.00850159764423,39.507597017882574]]" // Replace with your Streamlit app's URL
         width="100%"
         height="100%"
 
