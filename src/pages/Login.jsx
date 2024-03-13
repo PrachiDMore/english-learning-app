@@ -29,9 +29,8 @@ const navigate = useNavigate()
         toast.success("response?.data?.message")
         if (response?.data?.success) {
           localStorage.setItem("token", response?.data?.token)
-          navigate("/main")
+          window.location.href = "/main"
           setLoading(false)
-
         }
       }).catch((err) => {
         toast.error(err?.message)

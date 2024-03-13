@@ -5,7 +5,7 @@ import Button from '../components/Button';
 
 const SelectCharacter = () => {
   return (
-    <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-5 items-center p-7 '>
+    <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-5 items-center px-5 py-7 '>
       <div className='w-full flex justify-between items-center'>
         <Link to={'/story'} className=' flex justify-center items-center'>
           <IoArrowBackCircle className='text-textBlue text-4xl' />
