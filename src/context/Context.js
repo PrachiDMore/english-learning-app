@@ -12,6 +12,7 @@ export const Datacontext = createContext(null)
 const ContextProvider = ({ children }) => {
 	const navigate = useNavigate()
 	const location = useLocation()
+	const [profileLoading, setProfileLoading] = useState(true);
 	const [account, setAccount] = useState('')
 	const [userId, setUserId] = useState('')
 
@@ -19,9 +20,6 @@ const ContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (extractToken()) {
-			const jwtD = jwtDecode(localStorage.getItem("token"))
-			setUserId(jwtD?.id)
-			// console.log(location.pathname);
 			if (location.pathname === "/login" || location.pathname === "/screen1" || location.pathname === "/screen2" || location.pathname === "/screen3") {
 				navigate("/main")
 			}
@@ -32,9 +30,10 @@ const ContextProvider = ({ children }) => {
 	}, [])
 
 
-	const fetchUser = async (userId) => {
+	const fetchUser = async () => {
 		try {
-			await axios(`${server}/user/${userId}`, {
+			setProfileLoading(true)
+			await axios(`${server}/user/profile`, {
 				method: "GET",
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -42,20 +41,22 @@ const ContextProvider = ({ children }) => {
 			}).then((response) => {
 				setAccount(response.data?.user)
 			})
-				.catch((err) => {
-					console.log(err);
-				})
+			.catch((err) => {
+				console.log(err);
+			})
+			setProfileLoading(false)
 		} catch (error) {
 			console.log(error);
+			setProfileLoading(true)
 		}
 	}
 	useEffect(() => {
-		fetchUser(userId)
+		fetchUser()
 	}, [userId])
 
 
 	return (
-		<Datacontext.Provider value={{ account }}>
+		<Datacontext.Provider value={{ account, profileLoading}}>
 			{children}
 		</Datacontext.Provider>
 	)

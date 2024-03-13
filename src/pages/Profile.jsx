@@ -13,7 +13,8 @@ const Profile = () => {
   const handleLogout = () => {
     localStorage.clear()
     toast.success("Logged Out Sucessfully")
-    navigate('/login')
+    // navigate('/login')
+    window.location.href = '/screen1'
   }
   return (
     <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-20 items-center px-5 py-5'>

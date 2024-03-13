@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 import { ContextAuth } from '../context/Context';
 import CircularProgressBar from "../components/CircularProgressBar"
+import Spinner from '../components/Spinner';
 
 const Main = () => {
-  const { account } = ContextAuth()
-  console.log(account);
+  const { account, profileLoading } = ContextAuth();
   return (
+    <>
     <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-7 justify-between items-center px-5 pt-5 pb-9'>
       <div className='w-full grid gap-5'>
         <div className='w-full flex justify-between items-center'>
@@ -76,6 +77,10 @@ const Main = () => {
       </div>
 
     </div>
+    <div className={profileLoading ? 'h-screen w-screen bg-purpleWhite fixed top-0 left-0 z-50 opacity-100' : 'h-screen w-screen bg-purpleWhite fixed top-0 left-0 z-50 opacity-0 duration-200 pointer-events-none'}>
+      <Spinner className={"h-20 w-20 text-red-500"}/>
+    </div>
+    </>
   )
 }
 
