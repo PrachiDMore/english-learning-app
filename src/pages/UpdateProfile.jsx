@@ -26,7 +26,7 @@ const UpdateProfile = () => {
     e.preventDefault()
     setLoading(true)
     try {
-      axios(`http://localhost:3001/user/updateuser`, {
+      axios(`${server}/user/updateuser`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`

@@ -1,18 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IoArrowBackCircle } from "react-icons/io5";
 import { SiGooglemessages } from "react-icons/si";
+import axios from 'axios';
+import QuestionAnswerPage from './QuestionAnswerPage';
 
 const YourStory = () => {
+  const [files, setFiles] = useState([]);
+  const [filesUploaded, setFilesUploaded] = useState(false); // State to track if files were uploaded successfully
+
+  const handleFileChange = (e) => {
+    setFiles([...e.target.files]);
+  };
+
+  const handleUpload = async () => {
+    const formData = new FormData();
+    files.forEach(file => {
+      formData.append('files', file);
+    });
+
+    try {
+      await axios('http://localhost:5000/upload', {
+        method: "POST",
+
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        data: formData
+      }
+      ).then((res) => {
+        console.log(res);
+        console.log('Files uploaded successfully');
+        setFilesUploaded(true); // Set filesUploaded state to true upon successful upload
+      })
+    } catch (error) {
+      console.error('Error uploading files:', error);
+    }
+  };
+
   return (
     <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-5 items-center  '>
-      {/* <div className='w-full flex justify-between items-center'>
+      <div className='w-full flex justify-between items-center'>
         <Link to={'/uploadStory'} className=' flex justify-center items-center'>
           <IoArrowBackCircle className='text-textBlue text-4xl' />
         </Link>
         <h1 className='w-full h-max text-center text-2xl font-bold text-textBlue'>Your Story</h1>
         <IoArrowBackCircle className='text-lightWhite text-4xl' />
-      </div> */}
+      </div>
 
       {/* <div className='pb-7'>
         <p className='text-justify text-lg'>
@@ -26,18 +60,20 @@ const YourStory = () => {
         </p>
       </div> */}
 
-      <Link to={'/uploadStory'} className='fixed left-2 pt-1.5' >
-        <IoArrowBackCircle className='text-black text-4xl' />
-      </Link>
 
-      <iframe
+
+      {/* <iframe
         title="Streamlit App"
         src=" https://mangrove-atlas.herokuapp.com/country/IND?bounds=[[31.63330804491315,3.4656812989302352],[115.00850159764423,39.507597017882574]]" // Replace with your Streamlit app's URL
         width="100%"
         height="100%"
 
-      />
+      /> */}
 
+      <h1>Upload Files</h1>
+      <input type="file" multiple onChange={handleFileChange} />
+      <button onClick={handleUpload}>Upload</button>
+      {filesUploaded && <QuestionAnswerPage filesUploaded />} {/* Conditionally render the question and answer page if filesUploaded is true */}
       <Link to={'/selectCharacter'} className='fixed z-50 bottom-7 right-7'>
         <SiGooglemessages className='text-5xl rounded-full text-textBlue bg-white  iconShadow' />
       </Link>
