@@ -18,7 +18,7 @@ const UploadStory = () => {
       <div className='w-full grid gap-4'>
         <div className='flex justify-between gap-3 px-[6px] py-[6px] bg-white rounded-full boxShadow'>
           <div onClick={() => setPage("upload")} className={page == 'upload' ? 'w-full bg-textBlue px-4 py-3 rounded-full flex justify-center text-white  duration-200' : 'w-full bg-white px-4 py-3 rounded-full flex justify-center text-textBlue duration-200'}>
-            <p className='text-lightWhite'>Upload</p>
+            <p className=''>Upload</p>
           </div>
           <div onClick={() => setPage("history")} className={page == 'history' ? 'w-full bg-textBlue px-4 py-3 rounded-full flex justify-center text-white duration-200' : 'w-full bg-white px-4 py-3 rounded-full flex justify-center text-textBlue duration-200'}>
             <p className=''>History</p>

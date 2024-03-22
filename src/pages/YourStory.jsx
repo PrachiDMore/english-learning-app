@@ -39,7 +39,7 @@ const YourStory = () => {
   };
 
   return (
-    <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-5 items-center  '>
+    <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-5   '>
       <div className='w-full flex justify-between items-center'>
         <Link to={'/uploadStory'} className=' flex justify-center items-center'>
           <IoArrowBackCircle className='text-textBlue text-4xl' />
@@ -48,7 +48,7 @@ const YourStory = () => {
         <IoArrowBackCircle className='text-lightWhite text-4xl' />
       </div>
 
-      {/* <div className='pb-7'>
+ <div className='pb-7'>
         <p className='text-justify text-lg'>
           In the midst of a dense forest, shrouded in the perpetual twilight of its towering trees, there existed a small, forgotten pond. This pond, known only to the denizens of the forest, was home to two unlikely friends:Luna, a luminous firefly, and Throne, a solitary old turtle.
          Luna, with her incandescent glow, was the embodiment of light and gaiety. Each night, she danced above the pond's mirror-like surface, casting reflections that shimmered like stars fallen to earth. Throne, on the other hand, was the epitome of patience and wisdom. With a shell weathered by time, he moved through life at a deliberate pace, a silent observer of the world's wonders and woes.
@@ -58,25 +58,21 @@ const YourStory = () => {
           ButLuna, with a wisdom that belied her seeming frivolity, would always reassure him. "Throne," she'd say, her light pulsing softly in the darkness, "as long as this pond is here, and its waters reflect the sky, I will always return. For what is the joy of the sun, if I cannot share its stories with you?"
           And so, beneath the canopy of an eternal forest, their bond deepened, a testament to the unlikely friendships that flourish in the heart of nature.Luna and Throne, a firefly and a turtle, together they remained, two solitary lights against the backdrop of an ever-changing world, their stories a bridge spanning the gap between the earth and the stars.
         </p>
-      </div> */}
+      </div> 
 
 
 
-      {/* <iframe
-        title="Streamlit App"
-        src=" https://mangrove-atlas.herokuapp.com/country/IND?bounds=[[31.63330804491315,3.4656812989302352],[115.00850159764423,39.507597017882574]]" // Replace with your Streamlit app's URL
-        width="100%"
-        height="100%"
-
-      /> */}
-
-      <h1>Upload Files</h1>
+      {/* <h1>Upload Files</h1>
       <input type="file" multiple onChange={handleFileChange} />
       <button onClick={handleUpload}>Upload</button>
       {filesUploaded && <QuestionAnswerPage filesUploaded />} {/* Conditionally render the question and answer page if filesUploaded is true */}
-      <Link to={'/selectCharacter'} className='fixed z-50 bottom-7 right-7'>
+      {/* <Link to={'/selectCharacter'} className='fixed z-50 bottom-7 right-7'>
         <SiGooglemessages className='text-5xl rounded-full text-textBlue bg-white  iconShadow' />
-      </Link>
+      </Link> 
+       */}
+
+
+
     </div>
   )
 }
