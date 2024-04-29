@@ -82,11 +82,11 @@ const Story = () => {
           <Link to={`/selectStory?type=${type}`} className='absolute top-7 left-7 flex justify-center items-center'>
             <IoArrowBackCircle className='text-lightWhite text-4xl' />
           </Link>
-          <img className='h-fit w-full ' src={story?.imageurl} alt="" />
+          <img className='h-[45vh] w-full object-cover' src={story?.imageurl} alt="" />
         </div>
         <div className='h-full px-7 pt-3 pb-16  grid gap-3 '>
           <h1 className='text-textBlue font-bold text-2xl'>{story?.title}</h1>
-          <div>
+          <div className='text-justify'>
             {
               story?.story
             }

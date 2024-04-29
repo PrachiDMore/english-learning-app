@@ -17,7 +17,9 @@ const Main = () => {
             <p className='text-lg text-textGray'>Keep your way to learn</p>
           </div>
           <Link to={"/profile"}>
-            <img className='w-11 h-11 rounded-full object-cover' src="https://img.freepik.com/free-photo/cheerful-indian-businessman-smiling-closeup-portrait-jobs-career-campaign_53876-129417.jpg?t=st=1708616418~exp=1708620018~hmac=3b75c8218eacf33885cf4a1a37736fa8857b02bd0684d953fb3f410559cb711a&w=900" alt="" />
+          <div className='border-2 p-2 border-textBlue rounded-full'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2C305E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+          </div>
           </Link>
         </div>
 
@@ -44,7 +46,7 @@ const Main = () => {
                 progress={40}
               /> */}
             </Link>
-            <Link to={'/selectStory?type=medium'} className='bg-lightWhite p-5 rounded-3xl boxShadow flex justify-between items-center'>
+            {/* <Link to={'/selectStory?type=medium'} className='bg-lightWhite p-5 rounded-3xl boxShadow flex justify-between items-center'>
               <div className='flex flex-col'>
                 <h2 className='font-medium text-lg '>Medium level</h2>
                 <div className='flex gap-2 items-center'>
@@ -67,7 +69,7 @@ const Main = () => {
               <CircularProgressBar
                 progress={40}
               />
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

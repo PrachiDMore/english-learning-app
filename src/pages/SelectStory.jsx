@@ -102,19 +102,12 @@ const SelectStory = () => {
       </div>
 
       <div className='w-full h-max overflow-y-auto grid gap-5 pb-5'>
-        {/* <Card />
-        <Card /> */}
-
-        <Card />
-
-
 
         {
           story?.filter(value => value?.type == type && value?.isPredefined).map((value, index) => {
             return (
               <Link to={`/story/${value?.id}?type=${type}`} key={index} className=' w-full bg-lightWhite rounded-2xl boxShadow'>
                 <div>
-
                   <img src={value?.imageurl} alt="" srcSet="" className='h-52 w-full rounded-t-2xl object-cover' />
                 </div>
 
@@ -123,9 +116,6 @@ const SelectStory = () => {
                     value?.title
                   }
                 </p>
-
-
-
 
                 {/* <button className=' text-center bg-textBlue h-10 text-white px-4 rounded-md shadow-md'>
   Open Story
