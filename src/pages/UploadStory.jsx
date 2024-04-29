@@ -1,10 +1,68 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { IoArrowBackCircle } from "react-icons/io5";
 import Button from '../components/Button';
+import axios from 'axios';
+import { server } from '..';
 
 const UploadStory = () => {
   const [page, setPage] = useState("upload");
+
+  const [story, setStory] = useState([])
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
+  const fetchStory = async () => {
+    try {
+      await axios(`${server}/userstory/getstory`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      }).then((response) => {
+        // console.log(response?.data?.findstory);
+        setStory(response?.data?.findstory)
+      })
+        .catch((err) => {
+          console.log(err);
+        })
+
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+  useEffect(() => {
+    fetchStory()
+  }, [])
+
+
+
+  const handlePythonApi = async (story, id) => {
+    setLoading(true)
+    try {
+      await axios.post('http://192.168.0.102:8080/uploadpdftext', { text: story }, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }).then((res) => {
+
+        console.log(res);
+        setLoading(false)
+        navigate(`/chat/${id}`)
+      }).catch((err) => {
+        alert(err.message)
+        setLoading(false)
+        console.log(err);
+      })
+    } catch (error) {
+      alert('Something went wrong again')
+      setLoading(false)
+      console.log(error);
+    }
+
+  }
+
+
   return (
     <div className='h-screen w-screen bg-purpleWhite flex flex-col gap-5 items-center p-7 '>
       <div className='w-full flex justify-between items-center'>
@@ -24,10 +82,62 @@ const UploadStory = () => {
             <p className=''>History</p>
           </div>
         </div>
-        <h1 className='text-lg font-medium'>Upload your story or text </h1>
-        <div className='flex gap-3'>
-          <Button text={'Upload'} to={'/yourStory'} />
-          {/* <a href="https://testllml.streamlit.app/">Upload</a> */}
+        <div className={`${page == 'upload' ? 'block' : 'hidden'}`}>
+
+
+          <h1 className='text-lg font-medium text-center'>Upload your story or text </h1>
+          <div className='flex gap-3 mt-2'>
+            <Button text={'Upload'} to={'/yourStory'} />
+            {/* <a href="https://testllml.streamlit.app/">Upload</a> */}
+          </div>
+        </div>
+
+
+        <div className={`${page == 'history' ? 'block' : 'hidden'}`}>
+
+
+          <h1 className='text-lg font-medium text-center'>History </h1>
+
+
+
+          <div className='grid grid-cols-1 gap-x-3 gap-y-6 w-full '>
+
+            {
+              story?.filter(value => !value?.isPredefined).map((value, index) => {
+                return (
+                  <div key={index} className='border shadow-md rounded-lg p-2'>
+
+                    <p className='text-center'>
+                      Story {index + 1}
+                    </p>
+
+                    <div className='w-full h-[40vh] overflow-hidden px-4 relative'>
+                      <div>
+
+                        {value?.story}
+
+                      </div>
+                      <div className='absolute bottom-0 w-full h-12 bg-white left-0 flex justify-center items-center'>
+
+                        <button className=' text-center bg-textBlue h-10 text-white px-4 rounded-md shadow-md' onClick={() => {
+                          handlePythonApi(value?.story, value?.id)
+                        }} >
+                          {loading ? `Opening Story ${index + 1}` : `Open Story ${index + 1}`}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                )
+              })
+            }
+
+
+
+
+          </div>
         </div>
       </div>
     </div>

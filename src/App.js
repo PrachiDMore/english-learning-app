@@ -34,9 +34,9 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/updateProfile" element={<UpdateProfile />} />
           <Route path="/selectStory" element={<SelectStory />} />
-          <Route path="/story" element={<Story />} />
+          <Route path="/story/:id" element={<Story />} />
           <Route path="/selectCharacter" element={<SelectCharacter />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/chat/:id" element={<Chat />} />
           <Route path="/uploadStory" element={<UploadStory />} />
           <Route path="/yourStory" element={<YourStory />} />
         </Routes>

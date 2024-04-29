@@ -20,6 +20,56 @@ const CreateAccount = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
+
+
+
+
+  // const handleStory = async (id) => {
+  //   // console.log(charname);
+  //   try {
+  //     axios(`http://localhost:3001/userstory/stories`, {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`
+  //       },
+  //       data: {
+  //         userId: id,
+  //         stories: easystory 
+  //       }
+
+  //     }).then((response) => {
+  //       console.log(response.data);
+  //       toast.success(response?.data?.message)
+  //       // console.log(response?.data?.createStoryObj?.id);
+
+  //       // if (response?.data?.success) {
+
+  //       //   console.log(response);
+  //       // }
+  //     }).catch((err) => {
+  //       toast.error(err?.message)
+  //       console.log(err);
+  //       setLoading(false)
+  //     })
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const handleSinup = (e) => {
     e.preventDefault()
     setLoading(true)
@@ -33,16 +83,19 @@ const CreateAccount = () => {
         }
       }).then((response) => {
         console.log(response.data);
-        if (response.data?.success) {
+        // if (response?.data?.success) {
           toast.success(response?.data?.message + " Please login")
+
+
+          // handleStory(response?.data?.userId?.id)
           navigate('/login')
           setLoading(false)
           return
-        }
-        else {
-          toast.warning(response?.data?.message)
-          setLoading(false)
-        }
+        // }
+        // else {
+        //   toast.warning(response?.data?.message)
+        //   setLoading(false)
+        // }
       })
         .catch((err) => {
           console.log(err);

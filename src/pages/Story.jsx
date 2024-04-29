@@ -1,40 +1,108 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoArrowBackCircle } from "react-icons/io5";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { SiGooglemessages } from "react-icons/si";
 import { FaMicrophoneAlt } from "react-icons/fa";
+import axios from 'axios';
+import { server } from '..';
 
 const Story = () => {
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
+  const [params, setParams] = useSearchParams()
+  const type = params.get('type')
+
+  const { id } = useParams();
+  console.log(id);
+  const [story, setStory] = useState('')
+
+
+
+  const fetchStory = async () => {
+    try {
+      await axios(`${server}/userstory/readsinglestory/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      }).then((response) => {
+        // console.log(response?.data?.findstory);
+        // setStory(response?.data?.findstory)
+        console.log(response?.data?.findstory);
+        setStory(response?.data?.findstory)
+
+      })
+        .catch((err) => {
+          console.log(err);
+        })
+
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+  useEffect(() => {
+    fetchStory()
+  }, [])
+
+
+
+
+
+
+  const handlePythonApi = async (story, id) => {
+    setLoading(true)
+    try {
+      await axios.post('http://192.168.0.102:8080/uploadpdftext', { text: story }, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }).then((res) => {
+
+        console.log(res);
+        setLoading(false)
+        navigate(`/chat/${id}?type=${type}`)
+      }).catch((err) => {
+        alert(err.message)
+        setLoading(false)
+        console.log(err);
+      })
+    } catch (error) {
+      alert('Something went wrong again')
+      setLoading(false)
+      console.log(error);
+    }
+
+  }
+
   return (
     <>
       <div className='bg-purpleWhite h-max-screen overflow-y-auto relative z-0'>
         <div className='relative'>
-          <Link to={'/selectStory'} className='absolute top-7 left-7 flex justify-center items-center'>
+          <Link to={`/selectStory?type=${type}`} className='absolute top-7 left-7 flex justify-center items-center'>
             <IoArrowBackCircle className='text-lightWhite text-4xl' />
           </Link>
-          <img className='h-96 w-full object-cover' src="https://img.freepik.com/free-photo/landscape-body-water_198169-128.jpg?t=st=1708761712~exp=1708765312~hmac=f1fe11b068dd81d3dfe89e944be49e37aad1f126ba479962a9bb294b466a567d&w=900" alt="" />
+          <img className='h-fit w-full ' src={story?.imageurl} alt="" />
         </div>
         <div className='h-full px-7 pt-3 pb-16  grid gap-3 '>
-          <h1 className='text-textBlue font-bold text-2xl'>Reflections Beneath the Forest Canopy</h1>
-          <p className='text-justify text-lg'>
-            In the midst of a dense forest, shrouded in the perpetual twilight of its towering trees, there existed a small, forgotten pond. This pond, known only to the denizens of the forest, was home to two unlikely friends: <span className='text-textBlue font-bold'>Luna</span>, a luminous firefly, and <span className='text-textBlue font-bold'>Thorne</span>, a solitary old turtle.
-            <span className='text-textBlue font-bold'>Luna</span>, with her incandescent glow, was the embodiment of light and gaiety. Each night, she danced above the pond's mirror-like surface, casting reflections that shimmered like stars fallen to earth. <span className='text-textBlue font-bold'>Thorne</span>, on the other hand, was the epitome of patience and wisdom. With a shell weathered by time, he moved through life at a deliberate pace, a silent observer of the world's wonders and woes.
-            Their friendship was an oddity, born out of a chance meeting when <span className='text-textBlue font-bold'><span className='text-textBlue font-bold'>Luna</span></span>, fascinated by the reflection of the moon on the water's surface, had dived too close and found herself trapped in the water's embrace. <span className='text-textBlue font-bold'>Thorne</span>, hearing the commotion, had slowly made his way to her and, with a gentle nudge of his nose, had brought her back to the safety of the air. Since that night, <span className='text-textBlue font-bold'>Luna</span> had been steadfast in her gratitude, and <span className='text-textBlue font-bold'>Thorne</span> had found companionship in her light, a solace he hadn't realized he'd yearned for.
-            Each evening, as the forest succumbed to night's embrace, <span className='text-textBlue font-bold'>Luna</span> would tell tales of the sights she'd seen beyond the forest's confines, of cities that glowed as she did, but with light that never flickered nor faded. <span className='text-textBlue font-bold'>Thorne</span>, in turn, shared stories of the forest's ancient past, of times when the trees were young, and the world was a quieter place.
-            Their conversations, filled with dreams and memories, spanned the hours until the first light of dawn. They spoke of desires and fears, of <span className='text-textBlue font-bold'>Luna</span>'s secret wish to see the sun, and <span className='text-textBlue font-bold'>Thorne</span>'s quiet fear that he would one day wake to find her light extinguished, her adventures having carried her too far from the safety of their pond.
-            But <span className='text-textBlue font-bold'>Luna</span>, with a wisdom that belied her seeming frivolity, would always reassure him. "<span className='text-textBlue font-bold'>Thorne</span>," she'd say, her light pulsing softly in the darkness, "as long as this pond is here, and its waters reflect the sky, I will always return. For what is the joy of the sun, if I cannot share its stories with you?"
-            And so, beneath the canopy of an eternal forest, their bond deepened, a testament to the unlikely friendships that flourish in the heart of nature. <span className='text-textBlue font-bold'>Luna</span> and <span className='text-textBlue font-bold'>Thorne</span>, a firefly and a turtle, together they remained, two solitary lights against the backdrop of an ever-changing world, their stories a bridge spanning the gap between the earth and the stars.
-          </p>
+          <h1 className='text-textBlue font-bold text-2xl'>{story?.title}</h1>
+          <div>
+            {
+              story?.story
+            }
+          </div>
         </div>
       </div>
 
       <div className='fixed z-50  bottom-7 right-7 grid gap-4'>
-        <Link to={'/selectCharacter'} className=' '>
-          <FaMicrophoneAlt className='text-5xl rounded-full text-lightWhite bg-textBlue p-2 iconShadow' />
-        </Link>
-        <Link to={'/selectCharacter'} className=''>
-          <SiGooglemessages className='text-5xl rounded-full text-textBlue bg-white  iconShadow' />
-        </Link>
+      
+        <button onClick={() => {
+          handlePythonApi(story?.story, story?.id)
+        }} >
+          <SiGooglemessages className='text-6xl rounded-full text-textBlue bg-white  iconShadow' />
+        </button>
+
+
       </div>
     </>
   )

@@ -15,17 +15,18 @@ const ContextProvider = ({ children }) => {
 	const [profileLoading, setProfileLoading] = useState(true);
 	const [account, setAccount] = useState('')
 	const [userId, setUserId] = useState('')
+	const [char, setChar] = useState([])
 
 
 
 	useEffect(() => {
 		if (extractToken()) {
-			if (location.pathname === "/login" || location.pathname === "/screen1" || location.pathname === "/screen2" || location.pathname === "/screen3") {
+			if (location.pathname === "/login" || location.pathname === "/home" ||   location.pathname === "/screen2"||  location.pathname === "/screen1" || location.pathname === "/screen3") {
 				navigate("/main")
 			}
 		}
 		else {
-			navigate('/screen1')
+			navigate('/')
 		}
 	}, [])
 
@@ -56,7 +57,7 @@ const ContextProvider = ({ children }) => {
 
 
 	return (
-		<Datacontext.Provider value={{ account, profileLoading}}>
+		<Datacontext.Provider value={{ account, profileLoading, char, setChar}}>
 			{children}
 		</Datacontext.Provider>
 	)

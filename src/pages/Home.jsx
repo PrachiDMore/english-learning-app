@@ -1,7 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Home = () => {
+
+    const navigate = useNavigate();
+
+	useEffect(() => {
+	  const timeout = setTimeout(() => {
+		navigate("/screen1")
+	  }, 3000);
+	}, [])
+	
 	return (
 		<div className='h-screen w-screen bg-purpleWhite flex flex-col gap-7 justify-center items-center p-7'>
 			<div className='flex flex-col gap-1'>

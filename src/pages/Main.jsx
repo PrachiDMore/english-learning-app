@@ -32,36 +32,36 @@ const Main = () => {
         <div className='w-full grid gap-5'>
           <h2 className='text-2xl font-medium'>Choose your level</h2>
           <div className='grid gap-4'>
-            <Link to={'/selectStory'} className='bg-lightWhite p-5 rounded-3xl boxShadow flex justify-between items-center'>
+            <Link to={'/selectStory?type=easy'} className='bg-lightWhite p-5 rounded-3xl boxShadow flex justify-between items-center'>
               <div className='flex flex-col'>
                 <h2 className='font-medium text-lg '>Easy level</h2>
                 <div className='flex gap-2 items-center'>
                   <div className='w-2 h-2 bg-textBlue rounded-full'></div>
-                  <p className='text-textGray'>Stories: <span className='text-textBlue'>20</span></p>
+                  <p className='text-textGray'>Stories: <span className='text-textBlue'>3</span></p>
                 </div>
               </div>
-              <CircularProgressBar
+              {/* <CircularProgressBar
                 progress={40}
-              />
+              /> */}
             </Link>
-            <Link to={'/selectStory'} className='bg-lightWhite p-5 rounded-3xl boxShadow flex justify-between items-center'>
+            <Link to={'/selectStory?type=medium'} className='bg-lightWhite p-5 rounded-3xl boxShadow flex justify-between items-center'>
               <div className='flex flex-col'>
                 <h2 className='font-medium text-lg '>Medium level</h2>
                 <div className='flex gap-2 items-center'>
                   <div className='w-2 h-2 bg-textBlue rounded-full'></div>
-                  <p className='text-textGray'>Stories: <span className='text-textBlue'>20</span></p>
+                  <p className='text-textGray'>Stories: <span className='text-textBlue'>3</span></p>
                 </div>
               </div>
               <CircularProgressBar
                 progress={40}
               />
             </Link>
-            <Link to={'/selectStory'} className='bg-lightWhite p-5 rounded-3xl boxShadow flex justify-between items-center'>
+            <Link to={'/selectStory?type=hard'} className='bg-lightWhite p-5 rounded-3xl boxShadow flex justify-between items-center'>
               <div className='flex flex-col'>
                 <h2 className='font-medium text-lg '>Hard level</h2>
                 <div className='flex gap-2 items-center'>
                   <div className='w-2 h-2 bg-textBlue rounded-full'></div>
-                  <p className='text-textGray'>Stories: <span className='text-textBlue'>20</span></p>
+                  <p className='text-textGray'>Stories: <span className='text-textBlue'>3</span></p>
                 </div>
               </div>
               <CircularProgressBar
