@@ -104,7 +104,7 @@ const Chat = () => {
         if (query?.toLowerCase() === "thank you" || query?.toLowerCase() === "thanks") {
           setChatHistory([...chatHistory, { query, Sender: 'other', name: "You" }, { query: "You're welcome!", Sender: `Bot`, name: `${charname}` }]);
         } else {
-          const response = await axios.post('http://192.168.0.102:8080/chat', {
+          const response = await axios.post('http://192.168.0.103:8080/chat', {
             question: charname ? `Chat as if you were ${charname} from story and respond to the question  ${query} in short` : `${query} in short`,
             charname: charname
           })
@@ -245,7 +245,8 @@ const Chat = () => {
 
   const toggleListening = () => {
     if (!isListening) {
-      askMicrophonePermission();
+      // askMicrophonePermission();
+      SpeechRecognition.startListening({ continuous: false, language: 'en-IN' });
     } else {
       SpeechRecognition.stopListening();
       setIsListening(false);
@@ -325,7 +326,7 @@ const Chat = () => {
 
             <div className='  rounded-xl flex flex-col gap-y-2 justify-center items-center'>
               <div className="btn-style bg-textBlue p-2  rounded-full h-12 w-12  flex items-center justify-center">
-                <button onClick={startListening}>
+                <button onClick={toggleListening}>
                   {isListening ? <IoMdMic className='text-lightWhite  text-2xl' /> : <IoMdMicOff className='text-lightWhite  text-2xl' />}
                 </button>
               </div>

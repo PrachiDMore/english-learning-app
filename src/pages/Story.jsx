@@ -53,7 +53,7 @@ const Story = () => {
   const handlePythonApi = async (story, id) => {
     setLoading(true)
     try {
-      await axios.post('http://192.168.0.102:8080/uploadpdftext', { text: story }, {
+      await axios.post('http://192.168.0.103:8080/uploadpdftext', { text: story }, {
         headers: {
           'Content-Type': 'application/json'
         },

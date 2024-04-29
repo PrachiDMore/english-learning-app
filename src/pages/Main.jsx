@@ -46,7 +46,7 @@ const Main = () => {
                 progress={40}
               /> */}
             </Link>
-            {/* <Link to={'/selectStory?type=medium'} className='bg-lightWhite p-5 rounded-3xl boxShadow flex justify-between items-center'>
+            <Link to={'/selectStory?type=medium'} className='bg-lightWhite p-5 rounded-3xl boxShadow flex justify-between items-center'>
               <div className='flex flex-col'>
                 <h2 className='font-medium text-lg '>Medium level</h2>
                 <div className='flex gap-2 items-center'>
@@ -54,9 +54,9 @@ const Main = () => {
                   <p className='text-textGray'>Stories: <span className='text-textBlue'>3</span></p>
                 </div>
               </div>
-              <CircularProgressBar
+              {/* <CircularProgressBar
                 progress={40}
-              />
+              /> */}
             </Link>
             <Link to={'/selectStory?type=hard'} className='bg-lightWhite p-5 rounded-3xl boxShadow flex justify-between items-center'>
               <div className='flex flex-col'>
@@ -66,10 +66,10 @@ const Main = () => {
                   <p className='text-textGray'>Stories: <span className='text-textBlue'>3</span></p>
                 </div>
               </div>
-              <CircularProgressBar
+              {/* <CircularProgressBar
                 progress={40}
-              />
-            </Link> */}
+              /> */}
+            </Link> 
           </div>
         </div>
       </div>
